@@ -1,0 +1,33 @@
+* Files:
+There are two files in this application. The primary one is Filter.jar which is an executable java file. The other one is called fastq2qual.py which is an external python program invoked by Filter.jar during the process.
+In order to execute this application, firstly, the fastq2qual.py file has to be copied into local/bin/ and saved the command as "fastq2qual". Then the Filter.jar can normal running by the command "java -jar [path of the Filter.jar]".
+
+* Main Purpose:
+This application is used to filter the genome, remove the low average quality, low single base quality reads and the matepair of removed reads as well. The output can be saved to two format which are fastq and fasta+qual.
+
+
+* Functions and Parameters:
+There are 4 main buttons on the GUI:
+The "Open a File" button is used to open a new filter target file.
+The "Recalculate" button is used to calulate the current selected target file with different options. 
+The "Save" button is used to save the output file. There are two options for it which are the saving format options. The output file can be saved as Fastq format or Fasta + Qual. The default format is Fasta + Qual.
+The "Quit" button is used to quit the application.
+
+The radio button group in the mid of the 4 main buttons is used to specify the input file format which are Illumina, Sanger and Solexa. The deflaut format is Sanger.
+
+The Genome size text area is used to calculate the coverage value. The default value is null.
+
+There are 4 filter options:
+"Tolerance # of N" option restricts the max number of "N" in the output file. The value 0 means there is no value "N" in the output file, in another way, the reads which contain "N" base will be removed in the output file. The value 4+ means the output reads allows any number of "N". The default value is 0.
+
+"Filter the mate pair" option determines whether the matepair of the already removed read will be removed or not. The deflaut selection is "yes" which means the reads will be removed with its matepair if it is unqualified.
+
+"Tolerance of average quality" option is to set the lowest average quality tolerance of the output reads. The default value is 15 which means the read in the input file which average quality is less than 15 will be removed in the output file.
+
+"Tolerance of single quality" option is to set the lowest single base quality tolerance of the output reads. The default value is 15 which means the read in the input file which has at least one single base quality is less than 15 will be removed in the output file.
+
+The table displays the exact result of the quality mean for each position from the output file.
+
+The result pannel demonstrats the process information and some resluts. #N represents the number of reads removed due to "Tolerance # of N" option and MP, AQ, SQ represent the rest "Filter the mate pair", "Tolerance of average quality", "Tolerance of single quality" options respectively. When the genome size fails to be initialimezed by user, the coverage value will not be calculated due to no genome size. 
+
+The chart shows the result graphically. The values on the x axis represent the sequence postion and values on the y axis represent the quality. It is able to zoom in and zoom out by selecting any area on the chart. 
